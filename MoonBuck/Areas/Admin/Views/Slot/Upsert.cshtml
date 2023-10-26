@@ -1,0 +1,83 @@
+﻿@model SlotVM
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient m-lg-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2"> @(Model.Slot.Id != 0 ? "Update" : "Create") Slot</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row">
+            <input asp-for="Slot.Id" hidden />
+            <div class="border p-3">
+                @* <div asp-validation-summary="ModelOnly"></div>*@
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Slot.Name" type="text" class="form-control border-0 shadow" />
+                    <label asp-for="Slot.Name" class="ms-2"></label>
+                    <span asp-validation-for="Slot.Name" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Slot.StartTime" type="datetime-local" class="form-control border-0 shadow" />
+                    <label asp-for="Slot.StartTime" class="ms-2"></label>
+                    <span asp-validation-for="Slot.StartTime" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Slot.EndTime" type="datetime-local" class="form-control border-0 shadow" />
+                    <label asp-for="Slot.EndTime" class="ms-2"></label>
+                    <span asp-validation-for="Slot.EndTime" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Slot.PayRate" type="number" class="form-control border-0 shadow" />
+                    <label asp-for="Slot.PayRate" class="ms-2"></label>
+                    <span asp-validation-for="Slot.PayRate" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <select asp-for="Slot.RoleId" asp-items="@Model.RoleList" class="form-select border-0 shadow">
+                        <option disabled selected>--Select Role--</option>
+                    </select>
+                    <label asp-for="Slot.RoleId" class="ms-2"></label>
+                    <span asp-validation-for="Slot.RoleId" class="text-danger"></span>
+                </div>
+                <div class="row justify-content-center pt-2">
+                    <div class="col-6 col-md-3">
+                        @if (Model.Slot.Id != 0)
+                        {
+                            <button type="submit" class="btn btn-primary form-control">Update</button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-primary form-control">Create</button>
+                        }
+
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="Slot" asp-action="Index" class="btn btn-outline-primary border form-control">
+                            Back to Slots
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+        $(function () {
+            // Get the current date and time
+            var currentDate = new Date();
+
+            // Format the date as "YYYY-MM-DDTHH:mm" (matching the datetime-local input type)
+            var formattedDate = currentDate.toISOString().slice(0, 16);
+
+            // Set the input field's value to the current date and time
+            $("#datePicker").val(formattedDate);
+        });
+    </script>
+}

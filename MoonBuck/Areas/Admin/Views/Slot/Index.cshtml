@@ -1,0 +1,40 @@
+﻿@model List<Slot>
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient m-lg-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Work Slots</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6">
+            </div>
+            <div class="col-6 text-end pb-3">
+                <a asp-controller="Slot" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> Create New Slot
+                </a>
+            </div>
+
+        </div>
+
+
+        <table id="tblData" class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Cafe Name</th>
+                    <th>Job Role</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Is Filled?</th>
+                    <th>View Bids</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/slot.js"></script>
+}
